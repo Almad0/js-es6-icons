@@ -20,50 +20,38 @@ $(function () {
     new icon("fish", "fas", "fa-fish", "animals"),
     new icon("carrot", "fas", "fa-carrot", "vegetables"),
     new icon("lemon", "fas", "fa-lemon", "vegetables"),
-    new icon("apple-alt", "fas", "fa-apple-alt", "vegetables"),
-    new icon("chess-king", "fas", "fa-chess-king", "chess-pieces"),
-    new icon("chess-queen", "fas", "fa-chess-queen", "chess-pieces"),
-    new icon("chess-knight", "fas", "fa-chess-knight", "chess-pieces"),
-    new icon("chess-bishop", "fas", "fa-chess-bishop", "chess-pieces"),
-    new icon("chess-rook", "fas", "fa-chess-rook", "chess-pieces")
+    new icon("apple", "fas", "fa-apple-alt", "vegetables"),
+    new icon("king", "fas", "fa-chess-king", "chess-pieces"),
+    new icon("queen", "fas", "fa-chess-queen", "chess-pieces"),
+    new icon("knight", "fas", "fa-chess-knight", "chess-pieces"),
+    new icon("bishop", "fas", "fa-chess-bishop", "chess-pieces"),
+    new icon("rook", "fas", "fa-chess-rook", "chess-pieces")
   ]
 
   console.log(iconsArray);
 
-
   let container = $(".icons");
+  const blue = "blue";
+  const purple = "purple";
+  const green = "green";
+
+  iconsArray.forEach((icon) => {
+      if (icon.family === "animals") {
+        icon.color = blue;
+      } else if (icon.family === "vegetables") {
+        icon.color = green;
+      } else {
+        icon.color = purple;
+      };
+  });
 
   let print = iconsArray.forEach((icon) => {
     container.append(`
       <div>
-      <i class="${icon.prefix} ${icon.type}"></i>
+      <i class="${icon.prefix} ${icon.type}" style="color:${icon.color}"></i>
       <div class="title">${icon.name}</div>
       </div>
     `);
   });
 
-
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ---- FUNCTIONS ----*/
-// Creiamo una funzione per iterare nell'array e che appenda al container le icone.
-// tip: possiamo usare un ciclo foreach qui e destrutturare gli le proprieta degli elementi di un array
-// tip: il template literal ci puo aiutare con il markup
