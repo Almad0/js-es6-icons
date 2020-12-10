@@ -60,5 +60,7 @@ body {
   filter: drop-shadow(1px 1px 1px rgba(0,0,0, 0.5));
 }
 .icons .title {
+  margin-top: 10px;
   font-size: 14px;
+  text-transform: uppercase;
 }

@@ -1,5 +1,4 @@
 $(function () {
-  // Creiamo array di oggetti per le icone con le seguenti proprieta: name, prefix, type, family
 
   class icon {
     constructor(name, prefix, type, family) {
@@ -30,18 +29,19 @@ $(function () {
   ]
 
   console.log(iconsArray);
-  // Semezioniamo il container icons
+
 
   let container = $(".icons");
 
   let print = iconsArray.forEach((icon) => {
     container.append(`
+      <div>
       <i class="${icon.prefix} ${icon.type}"></i>
+      <div class="title">${icon.name}</div>
+      </div>
     `);
   });
 
-
-  //inseriamo le icone nel container (possiamo creare una funzione tipo print() per inserire gli elementi e richiamarla qui)
 
 });
 
