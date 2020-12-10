@@ -54,4 +54,20 @@ $(function () {
     `);
   });
 
+  let choose = $("#type");
+  choose.append(`
+    <option value="anilmals">Animals</option>
+    <option value="vegetables">Vegetables</option>
+    <option value="chess">Chess-pieces</option>
+    `
+  );
+
+  const filterIconArray = iconsArray.filter((element) => {
+    return element.family === "animals"
+  });
+
+
+console.log(filterIconArray);
+
+
 });
