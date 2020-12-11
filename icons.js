@@ -1,4 +1,4 @@
-$(function () {
+$(function() {
 
   class icon {
     constructor(name, prefix, type, family) {
@@ -36,13 +36,13 @@ $(function () {
   const green = "green";
 
   iconsArray.forEach((icon) => {
-      if (icon.family === "animals") {
-        icon.color = blue;
-      } else if (icon.family === "vegetables") {
-        icon.color = green;
-      } else {
-        icon.color = purple;
-      };
+    if (icon.family === "animals") {
+      icon.color = blue;
+    } else if (icon.family === "vegetables") {
+      icon.color = green;
+    } else {
+      icon.color = purple;
+    };
   });
 
   let print = iconsArray.forEach((icon) => {
@@ -56,18 +56,73 @@ $(function () {
 
   let choose = $("#type");
   choose.append(`
-    <option value="anilmals">Animals</option>
+    <option value="animals">Animals</option>
     <option value="vegetables">Vegetables</option>
     <option value="chess">Chess-pieces</option>
-    `
-  );
+    `);
 
-  const filterIconArray = iconsArray.filter((element) => {
+  const filterIconArrayAnimals = iconsArray.filter((element) => {
     return element.family === "animals"
   });
+  console.log(filterIconArrayAnimals);
+
+  const filterIconArrayVegetables = iconsArray.filter((element) => {
+    return element.family === "vegetables"
+  });
+  console.log(filterIconArrayVegetables);
+
+  const filterIconArrayChess = iconsArray.filter((element) => {
+    return element.family === "chess-pieces"
+  });
+  console.log(filterIconArrayChess);
 
 
-console.log(filterIconArray);
+  var tendina = document.getElementById('type');
 
+  tendina.addEventListener('change', function() {
+    var index = tendina.selectedIndex;
+    if (index == 0) {
+      container.empty();
+      let print = iconsArray.forEach((icon) => {
+        container.append(`
+        <div>
+        <i class="${icon.prefix} ${icon.type}" style="color:${icon.color}"></i>
+        <div class="title">${icon.name}</div>
+        </div>
+      `);
+      });
+    } else if (index == 1) {
+      container.empty();
+      let print = filterIconArrayAnimals.forEach((icon) => {
+        container.append(`
+        <div>
+        <i class="${icon.prefix} ${icon.type}" style="color:${icon.color}"></i>
+        <div class="title">${icon.name}</div>
+        </div>
+      `);
+      });
+    } else if (index == 2) {
+      container.empty();
+      let print = filterIconArrayVegetables.forEach((icon) => {
+        container.append(`
+        <div>
+        <i class="${icon.prefix} ${icon.type}" style="color:${icon.color}"></i>
+        <div class="title">${icon.name}</div>
+        </div>
+      `);
+      });
+    } else {
+      container.empty();
+      let print = filterIconArrayChess.forEach((icon) => {
+        container.append(`
+        <div>
+        <i class="${icon.prefix} ${icon.type}" style="color:${icon.color}"></i>
+        <div class="title">${icon.name}</div>
+        </div>
+      `);
+      });
+    }
+
+  });
 
 });
