@@ -28,8 +28,6 @@ $(function() {
     new icon("rook", "fas", "fa-chess-rook", "chess-pieces")
   ]
 
-  console.log(iconsArray);
-
   let container = $(".icons");
   const blue = "blue";
   const purple = "purple";
@@ -45,14 +43,18 @@ $(function() {
     };
   });
 
-  let print = iconsArray.forEach((icon) => {
-    container.append(`
+  function print(array, elementHTML) {
+    array.forEach((icon) => {
+      elementHTML.append(`
       <div>
       <i class="${icon.prefix} ${icon.type}" style="color:${icon.color}"></i>
       <div class="title">${icon.name}</div>
       </div>
     `);
-  });
+    })
+  };
+
+  print(iconsArray, container);
 
   let choose = $("#type");
   choose.append(`
@@ -64,65 +66,33 @@ $(function() {
   const filterIconArrayAnimals = iconsArray.filter((element) => {
     return element.family === "animals"
   });
-  console.log(filterIconArrayAnimals);
-
   const filterIconArrayVegetables = iconsArray.filter((element) => {
     return element.family === "vegetables"
   });
-  console.log(filterIconArrayVegetables);
-
   const filterIconArrayChess = iconsArray.filter((element) => {
     return element.family === "chess-pieces"
   });
-  console.log(filterIconArrayChess);
 
-
-  var tendina = document.getElementById('type');
-
+  const tendina = document.getElementById('type');
   tendina.addEventListener('change', function() {
-    var index = tendina.selectedIndex;
-    if (index == 0) {
-      container.empty();
-      let print = iconsArray.forEach((icon) => {
-        container.append(`
-        <div>
-        <i class="${icon.prefix} ${icon.type}" style="color:${icon.color}"></i>
-        <div class="title">${icon.name}</div>
-        </div>
-      `);
-      });
-    } else if (index == 1) {
-      container.empty();
-      let print = filterIconArrayAnimals.forEach((icon) => {
-        container.append(`
-        <div>
-        <i class="${icon.prefix} ${icon.type}" style="color:${icon.color}"></i>
-        <div class="title">${icon.name}</div>
-        </div>
-      `);
-      });
-    } else if (index == 2) {
-      container.empty();
-      let print = filterIconArrayVegetables.forEach((icon) => {
-        container.append(`
-        <div>
-        <i class="${icon.prefix} ${icon.type}" style="color:${icon.color}"></i>
-        <div class="title">${icon.name}</div>
-        </div>
-      `);
-      });
-    } else {
-      container.empty();
-      let print = filterIconArrayChess.forEach((icon) => {
-        container.append(`
-        <div>
-        <i class="${icon.prefix} ${icon.type}" style="color:${icon.color}"></i>
-        <div class="title">${icon.name}</div>
-        </div>
-      `);
-      });
+    let index = tendina.selectedIndex;
+    switch (index) {
+      case 0:
+        container.empty();
+        print(iconsArray, container);
+        break;
+      case 1:
+        container.empty();
+        print(filterIconArrayAnimals, container);
+        break;
+      case 2:
+        container.empty();
+        print(filterIconArrayVegetables, container);
+        break;
+      case 3:
+        container.empty();
+        print(filterIconArrayChess, container);
+        break;
     }
-
   });
-
 });
